@@ -11,10 +11,10 @@ export class ProductService {
 
   private url = 'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros'
   private headers;
-
+  id = encodeURI('11111');
   constructor() {
     this.headers = new HttpHeaders()
-    .set('authorId', '11111')
+    .set('authorId', this.id)
   }
 
   getProducts() {
