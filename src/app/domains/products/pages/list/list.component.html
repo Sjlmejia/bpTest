@@ -2,6 +2,9 @@
   <div class="msg-error" *ngIf="showMessageError()" >
     {{messageError()}}
   </div>
+  <div class="logo-bp">
+    <img [src]="logo" alt="">
+  </div>
   <div class="button-section">
     <input type="text" class="search-input" placeholder="Search" (keyup)="handleSearch($event)">
     <button class="btn btn-primary" (click)="goToAdd()">Agregar</button>

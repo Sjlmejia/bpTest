@@ -27,6 +27,7 @@ export class ListComponent {
   messageError = signal('');
   showMessageError = signal(false);
   sortOptions = [5,10, 20];
+  logo = 'https://cdnbancawebprodcx6.azureedge.net/blue/static/items/pbw-pichincha-banca-web-public-ang/assets/logo_pichincha.svg';
 
   productsByFilter = computed(() => {
     const filter = this.defaultValue();

@@ -2,6 +2,9 @@
   <div class="msg-error" *ngIf="showMessageError()" >
     {{messageError()}}
   </div>
+  <div class="logo-bp">
+    <img [src]="logo" alt="">
+  </div>
   <div class="container-form">
     <h1 class="title-page">{{title()}}</h1>
     <form [formGroup]="myForm" (ngSubmit)="onSave()" autocomplete="off">

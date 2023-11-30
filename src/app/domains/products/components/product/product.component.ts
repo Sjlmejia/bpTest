@@ -19,6 +19,7 @@ export class ProductComponent {
   private fb = inject(FormBuilder);
   private productService = inject(ProductService);
   private router = inject(Router);
+  logo = 'https://cdnbancawebprodcx6.azureedge.net/blue/static/items/pbw-pichincha-banca-web-public-ang/assets/logo_pichincha.svg'
   
   title = signal('Formulario de Registro');
   minDate = formatDate(new Date(), 'yyyy-MM-dd', 'en');

@@ -123,3 +123,10 @@
   color: #4a4a4a;
   padding-bottom: 20px;
 }
+
+.logo-bp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
