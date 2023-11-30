@@ -1,0 +1,9 @@
+<div class="dropdown">
+  <div class="icon" (click)="toggleDropdown()">
+    <i class="fa fa-ellipsis-v"></i>
+  </div>
+  <div class="dropdown-content" *ngIf="isOpen()">
+    <div class="menu-item" (click)="goToEdit(id)">Editar</div>
+    <div class="menu-item" (click)="goToDelete(id)">Eliminar</div>
+  </div>
+</div>

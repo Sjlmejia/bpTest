@@ -1,0 +1,125 @@
+.table-page {
+  background: #f9fafc;
+  height: 100vh;
+}
+.container-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 80%;
+  background: white;
+}
+.container-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  height: 50px;
+  background: #f9fafc;
+  margin-top: 15px;
+  border-bottom: 2px solid #c8c8c852;
+  .column {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #4a4a4a;
+    font-size: 16px;
+    font-family: Prelo-Book !important;
+    font-weight: 400;
+    line-height: 24px;
+    flex: 1;
+  }
+}
+
+.container-body {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+}
+.logo {
+  border-radius: 50%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #c8c8c852;
+  .section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #4a4a4a;
+    flex:1;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: #fd0;
+  color: #0f265c;
+  border-color: #fd0;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  white-space: nowrap;
+  font-family:Prelo-SemiBold,sans-serif;
+}
+.button-section {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  padding-top: 60px;
+  padding-bottom: 10px;
+}
+
+.search-input {    
+  display: block;
+  height: 10px;
+  padding: 1rem;
+  font-family: Prelo-Medium;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #4a4a4a;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.section-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  color: #4a4a4a;
+  flex:1;
+
+}
+
+.footer-section {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  color: #4a4a4a;
+  padding-bottom: 20px;
+}

@@ -1,0 +1,101 @@
+.product-page {
+  background-color: #f9fafc;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 50px;
+  width: 60%;
+  height: 70%;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.message-error {
+  color: red;
+}
+
+.container-fields {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a4a4a;
+}
+
+.input-form {    
+  display: block;
+  height: 10px;
+  width: 300px;
+  padding: 1rem;
+  font-family: Prelo-Medium;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #4a4a4a;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.column-right {
+  padding-right: 50px;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.submit-btn {
+  background: #fd0;
+  color: #0f265c;
+  border-color: #fd0;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  height: 40px;
+  width: 80px;
+  white-space: nowrap;
+  font-family:Prelo-SemiBold,sans-serif;
+}
+
+.restore-btn {
+  background: #f9fafc;
+  color: #0f265c;
+  border-color: #fd0;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 65px;
+  height: 40px;
+  width: 80px;
+  font-weight: 500;
+  white-space: nowrap;
+  font-family:Prelo-SemiBold,sans-serif;
+}
+
+.msg-error { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: red;
+  border: 1px solid red;
+  width: auto;
+  height: 20px;
+}

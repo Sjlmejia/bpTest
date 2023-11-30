@@ -1,0 +1,45 @@
+<div class="table-page">
+  <div class="msg-error" *ngIf="showMessageError()" >
+    {{messageError()}}
+  </div>
+  <div class="button-section">
+    <input type="text" class="search-input" placeholder="Search" (keyup)="handleSearch($event)">
+    <button class="btn btn-primary" (click)="goToAdd()">Agregar</button>
+  </div>
+  <div class="container-table">
+    <div class="container-header">
+      @for (column of columnsHeader; track $index) {
+        <div class="column">{{column.label}}</div>
+      }
+    </div>
+    <div class="container-body">
+        @for (product of productsByFilter(); track $index) {
+          <div class="row">
+            <div class="section">
+              <img class="logo" [src]="product.logo" [alt]="product.name" width="50" height="60">
+            </div>
+            <div class="section">{{product.name}}</div>
+            <div class="section">{{product.description}}</div>
+            <div class="section">{{product.date_release | date: 'dd/MM/yyyy'}}</div>
+            <div class="section-actions">
+              <div >{{product.date_revision | date: 'dd/MM/yyyy'}}</div>
+                <app-dropdown [id]="product.id" (edit)="editProduct($event)" (delete)="deleteProduct($event)"/>
+              </div>
+              <app-modal [showModal]="showModal()" [product]="product" (handleDelete)="handleDelete($event)"></app-modal>
+          </div>
+        } @empty {
+          <div>No hay Productos</div>
+        }
+    </div>
+    <div class="footer-section">
+      <div>{{ productsByFilter().length }} Resultados</div>
+      <div>
+        <select #dropdown (change)="handleSort($event)">
+          @for (item of sortOptions; track $index) {
+            <option [value]="item">{{item}}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
