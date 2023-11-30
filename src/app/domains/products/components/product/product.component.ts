@@ -93,7 +93,6 @@ export class ProductComponent {
       return;
     }
     if( this.id ) {
-      console.log('this.myForm.value', this.myForm.value)
       const putProduct = {...this.myForm.value, id:this.id}
       this.productService.updatedProduct(putProduct)
       .subscribe({

@@ -15,7 +15,6 @@ export class DropdownComponent {
   isOpen = signal(false);
 
   toggleDropdown() {
-    console.log('toggleDropdown', this.isOpen());
     this.isOpen.set(!this.isOpen());
   }
 
