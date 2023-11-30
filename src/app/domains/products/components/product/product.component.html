@@ -3,15 +3,15 @@
     {{messageError()}}
   </div>
   <div class="container-form">
-    <h1 class="container-fields">{{title()}}</h1>
+    <h1 class="title-page">{{title()}}</h1>
     <form [formGroup]="myForm" (ngSubmit)="onSave()" autocomplete="off">
       <div class="container-fields">
         <div class="column-right">
           <label>ID</label><br>
           <input type="text"
                   class="input-form"
+                  [class.error-input]="isValidField('id')"
                   formControlName="id">
-          <br>
           <span class="message-error" 
                 *ngIf="isValidField('id')">
                 {{ getMessageError('id') }}
@@ -20,9 +20,8 @@
           <label>Descripcion</label><br>
           <input  type="text"
                   class="input-form"
+                  [class.error-input]="isValidField('description')"
                   formControlName="description">
-    
-          <br>
           <span class="message-error" 
                 *ngIf="isValidField('description')">
                 {{ getMessageError('description') }}
@@ -31,11 +30,10 @@
           <label >Fecha de Liberación</label><br>
           <input  type="date"
                   class="input-form"
+                  [class.error-input]="isValidField('date_release')"
                   min = "2023-11-30"
                   formControlName="date_release">
-    
-          <br>
-          <span class="message-error" 
+              <span class="message-error" 
                 *ngIf="isValidField('date_release')">
                 {{ getMessageError('date_release') }}
           </span>
@@ -44,8 +42,8 @@
           <label>Nombre</label><br>
           <input type="text"
                   class="input-form"
+                  [class.error-input]="isValidField('name')"
                   formControlName="name">
-          <br>
           <span class="message-error" 
                 *ngIf="isValidField('name')">
                 {{ getMessageError('name') }}
@@ -54,9 +52,8 @@
           <label>Logo</label><br>
           <input  type="text"
                   class="input-form"
+                  [class.error-input]="isValidField('logo')"
                   formControlName="logo">
-    
-          <br>
           <span class="message-error" 
                 *ngIf="isValidField('logo')">
                 {{ getMessageError('logo') }}
@@ -65,10 +62,9 @@
           <label>Fecha de Revisión</label><br>
           <input  type="date"
                   class="input-form"
+                  [class.error-input]="isValidField('date_revision')"
                   formControlName="date_revision">
-    
-          <br>
-          <span class="message-error" 
+              <span class="message-error" 
                 *ngIf="isValidField('date_revision')">
                 {{ getMessageError('date_revision') }}
           </span>

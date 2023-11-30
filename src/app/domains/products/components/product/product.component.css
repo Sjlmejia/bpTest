@@ -11,22 +11,30 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-top: 50px;
   width: 60%;
   height: 70%;
   margin: 0 auto;
   background-color: #fff;
 }
 
+.error-input {
+  border: 1px solid red !important;
+}
 .message-error {
   color: red;
 }
 
-.container-fields {
+.container-fields,.title-page {
   display: flex;
   align-items: center;
   justify-content: center;
   color: #4a4a4a;
+}
+
+.title-page {
+  width: 90%;
+  border-bottom: 1px solid #4a4a4a;
+  padding-bottom: 20px;
 }
 
 .input-form {    
