@@ -1,82 +1,78 @@
 <div class="product-page">
-  <div class="msg-error" *ngIf="showMessageError()" >
-    {{messageError()}}
+  <div class="msg-error" *ngIf="showMessageError()">
+    {{ messageError() }}
   </div>
   <div class="logo-bp">
-    <img [src]="logo" alt="">
+    <img [src]="logo" alt="Banco Logo">
   </div>
   <div class="container-form">
-    <h1 class="title-page">{{title()}}</h1>
+    <h1 class="title-page">{{ title() }}</h1>
     <form [formGroup]="myForm" (ngSubmit)="onSave()" autocomplete="off">
       <div class="container-fields">
-        <div class="column-right">
-          <label>ID</label><br>
-          <input type="text"
-                  class="input-form"
-                  [class.error-input]="isValidField('id')"
-                  formControlName="id">
-          <span class="message-error" 
-                *ngIf="isValidField('id')">
-                {{ getMessageError('id') }}
-          </span>
-          <br>
-          <label>Descripcion</label><br>
-          <input  type="text"
-                  class="input-form"
-                  [class.error-input]="isValidField('description')"
-                  formControlName="description">
-          <span class="message-error" 
-                *ngIf="isValidField('description')">
-                {{ getMessageError('description') }}
-          </span>
-          <br>
-          <label >Fecha de Liberación</label><br>
-          <input  type="date"
-                  class="input-form"
-                  [class.error-input]="isValidField('date_release')"
-                  min = "2023-11-30"
-                  formControlName="date_release">
-              <span class="message-error" 
-                *ngIf="isValidField('date_release')">
-                {{ getMessageError('date_release') }}
-          </span>
+        <div class="column">
+          <div>
+            <label for="id">ID</label>
+            <input type="text" id="id" class="input-form" [class.error-input]="isValidField('id')" formControlName="id"
+              [disabled]="id !== undefined">
+            <span class="message-error" *ngIf="isValidField('id')">
+              {{ getMessageError('id') }}
+            </span>
+          </div>
+
+          <div>
+            <label for="description">Descripción</label>
+            <input type="text" id="description" class="input-form" [class.error-input]="isValidField('description')"
+              formControlName="description">
+            <span class="message-error" *ngIf="isValidField('description')">
+              {{ getMessageError('description') }}
+            </span>
+          </div>
+
+          <div>
+            <label for="date_release">Fecha de Liberación</label>
+            <input type="date" id="date_release" class="input-form" [class.error-input]="isValidField('date_release')"
+              [min]="minDate" formControlName="date_release">
+            <span class="message-error" *ngIf="isValidField('date_release')">
+              {{ getMessageError('date_release') }}
+            </span>
+          </div>
+
         </div>
-        <div>
-          <label>Nombre</label><br>
-          <input type="text"
-                  class="input-form"
-                  [class.error-input]="isValidField('name')"
-                  formControlName="name">
-          <span class="message-error" 
-                *ngIf="isValidField('name')">
-                {{ getMessageError('name') }}
-          </span>
-          <br>
-          <label>Logo</label><br>
-          <input  type="text"
-                  class="input-form"
-                  [class.error-input]="isValidField('logo')"
-                  formControlName="logo">
-          <span class="message-error" 
-                *ngIf="isValidField('logo')">
-                {{ getMessageError('logo') }}
-          </span>
-          <br>
-          <label>Fecha de Revisión</label><br>
-          <input  type="date"
-                  class="input-form"
-                  [class.error-input]="isValidField('date_revision')"
-                  formControlName="date_revision">
-              <span class="message-error" 
-                *ngIf="isValidField('date_revision')">
-                {{ getMessageError('date_revision') }}
-          </span>
+
+        <div class="column">
+          <div>
+            <label for="name">Nombre</label>
+            <input type="text" id="name" class="input-form" [class.error-input]="isValidField('name')"
+              formControlName="name">
+            <span class="message-error" *ngIf="isValidField('name')">
+              {{ getMessageError('name') }}
+            </span>
+          </div>
+
+          <div>
+            <label for="logo">Logo</label>
+            <input type="text" id="logo" class="input-form" [class.error-input]="isValidField('logo')"
+              formControlName="logo">
+            <span class="message-error" *ngIf="isValidField('logo')">
+              {{ getMessageError('logo') }}
+            </span>
+          </div>
+          <div>
+            <label for="date_revision">Fecha de Revisión</label>
+            <input type="date" id="date_revision" class="input-form" [class.error-input]="isValidField('date_revision')"
+              formControlName="date_revision">
+            <span class="message-error" *ngIf="isValidField('date_revision')">
+              {{ getMessageError('date_revision') }}
+            </span>
+          </div>
+
         </div>
       </div>
+
       <div class="action-buttons">
-        <button class="restore-btn" (click)="handleReset()">Reiniciar</button>
-        <button class="submit-btn" type="submit">Enviar</button>
+        <button type="button" class="restore-btn" (click)="handleReset()">Reiniciar</button>
+        <button class="submit-btn" type="submit">Agregar</button>
       </div>
     </form>
-  </div> 
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, signal, Input, EventEmitter, Output } from '@angular/core';
+import { Component, signal, Input, EventEmitter, Output, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,18 +14,26 @@ export class DropdownComponent {
   @Output() delete = new EventEmitter();
   isOpen = signal(false);
 
+  constructor(private elementRef: ElementRef) {}
+
   toggleDropdown() {
     this.isOpen.set(!this.isOpen());
   }
 
-  goToEdit(id:string) {
+  goToEdit(id: string) {
     this.edit.emit(id);
     this.isOpen.set(false);
   }
 
-  goToDelete(id:string) {
+  goToDelete(id: string) {
     this.delete.emit(id);
     this.isOpen.set(false);
   }
 
+  @HostListener('document:click', ['$event'])
+  closeDropdown(event: Event) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.isOpen.set(false);
+    }
+  }
 }

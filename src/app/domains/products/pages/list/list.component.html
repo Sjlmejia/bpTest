@@ -1,48 +1,49 @@
 <div class="table-page">
-  <div class="msg-error" *ngIf="showMessageError()" >
-    {{messageError()}}
+  <div class="logo-container">
+    <img [src]="logo" alt="Banco Pichincha" class="logo-banco">
   </div>
-  <div class="logo-bp">
-    <img [src]="logo" alt="">
-  </div>
-  <div class="button-section">
-    <input type="text" class="search-input" placeholder="Search" (keyup)="handleSearch($event)">
+
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Buscar producto..." (keyup)="handleSearch($event)">
     <button class="btn btn-primary" (click)="goToAdd()">Agregar</button>
   </div>
   <div class="container-table">
-    <div class="container-header">
-      @for (column of columnsHeader; track $index) {
-        <div class="column">{{column.label}}</div>
-      }
-    </div>
-    <div class="container-body">
-        @for (product of productsByFilter(); track $index) {
-          <div class="row">
-            <div class="section">
-              <img class="logo" [src]="product.logo" [alt]="product.name" width="50" height="60">
-            </div>
-            <div class="section">{{product.name}}</div>
-            <div class="section">{{product.description}}</div>
-            <div class="section">{{product.date_release | date: 'dd/MM/yyyy'}}</div>
-            <div class="section-actions">
-              <div >{{product.date_revision | date: 'dd/MM/yyyy'}}</div>
-                <app-dropdown [id]="product.id" (edit)="editProduct($event)" (delete)="deleteProduct($event)"/>
-              </div>
-              <app-modal [showModal]="showModal()" [product]="product" (handleDelete)="handleDelete($event)"></app-modal>
+    <div class="wrap-table">
+      <div class="container-header">
+        <div class="column" *ngFor="let column of columnsHeader">{{ column.label }}</div>
+      </div>
+
+      <div class="container-body" *ngIf="(filteredProducts() ?? []).length > 0">
+        <div class="row" *ngFor="let product of filteredProducts()">
+          <div class="section">
+            <img class="logo" [src]="product.logo" [alt]="product.name">
           </div>
-        } @empty {
-          <div>No hay Productos</div>
-        }
-    </div>
-    <div class="footer-section">
-      <div>{{ productsByFilter().length }} Resultados</div>
-      <div>
-        <select #dropdown (change)="handleSort($event)">
-          @for (item of sortOptions; track $index) {
-            <option [value]="item">{{item}}</option>
-          }
-        </select>
+          <div class="section">{{ product.name }}</div>
+          <div class="section">{{ product.description }}</div>
+          <div class="section">{{ product.date_release | date: 'dd/MM/yyyy' }}</div>
+          <div class="section">{{ product.date_revision | date: 'dd/MM/yyyy' }}</div>
+          <div class="section-actions">
+            <app-dropdown [id]="product.id" (edit)="editProduct($event)" (delete)="deleteProduct($event)"></app-dropdown>
+          </div>
+        </div>
+
+        <div *ngIf="filteredProducts().length === 0" class="no-data">No hay productos disponibles</div>
+      </div>
+
+      <div class="footer-section">
+        <div class="results">{{ filteredProducts().length }} Resultados</div>
+        <div class="select-pages">
+          <select class="select-box" (change)="handleSort($event)">
+            <option *ngFor="let item of sortOptions" [value]="item">{{ item }}</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
+  <app-modal
+  [showModal]="showModal()"
+  *ngIf="selectedProduct"
+  [product]="selectedProduct!"
+  (handleDelete)="handleDelete($event)">
+</app-modal>
 </div>

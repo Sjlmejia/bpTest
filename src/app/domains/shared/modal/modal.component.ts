@@ -10,17 +10,25 @@ import { Product } from '../models/product.model';
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
-  @Input({required: true}) showModal: boolean = true;
-  @Input({required:true}) product!: Product;
+  @Input({ required: true }) showModal: boolean = false;
+  @Input({ required: true }) product!: Product;
   @Output() handleDelete = new EventEmitter();
 
   closeModal(isDelete = false): void {
-    this.showModal = false;
+    if (!this.product) return;
+
     const objResponse = {
-      showModal: this.showModal,
+      showModal: false,
       isDelete: isDelete,
-      product: this.product, 
-    }
+      product: this.product,
+    };
     this.handleDelete.emit(objResponse);
   }
+
+  onBackdropClick(event: Event): void {
+    if (event.target === event.currentTarget) {
+      this.closeModal();
+    }
+  }
+
 }

@@ -9,6 +9,7 @@ describe('ModalComponent', () => {
     TestBed.configureTestingModule({
       imports: [ModalComponent],
     });
+
     fixture = TestBed.createComponent(ModalComponent);
     component = fixture.componentInstance;
     component.product = {
@@ -18,7 +19,7 @@ describe('ModalComponent', () => {
       logo: 'Test Logo',
       date_release: new Date(),
       date_revision: new Date(),
-    }
+    };
     fixture.detectChanges();
   });
 
@@ -32,8 +33,6 @@ describe('ModalComponent', () => {
 
     component.closeModal(isDelete);
 
-    expect(component.showModal).toBe(false);
-
     const expectedResponse = {
       showModal: false,
       isDelete: isDelete,
@@ -41,5 +40,39 @@ describe('ModalComponent', () => {
     };
 
     expect(emitSpy).toHaveBeenCalledWith(expectedResponse);
+  });
+
+  it('should close modal when clicking outside of it', () => {
+    const closeModalSpy = jest.spyOn(component, 'closeModal');
+
+    const modalBackdrop = document.createElement('div');
+
+    const mockEvent = {
+      target: modalBackdrop,
+      currentTarget: modalBackdrop
+    } as unknown as Event;
+
+    component.onBackdropClick(mockEvent);
+
+    expect(closeModalSpy).toHaveBeenCalled();
+  });
+
+
+  it('should not close modal when clicking inside modal-content', () => {
+    const closeModalSpy = jest.spyOn(component, 'closeModal');
+
+    const modalContent = document.createElement('div');
+    const modalContainer = document.createElement('div');
+
+    modalContainer.appendChild(modalContent);
+
+    const mockEvent = {
+      target: modalContent,
+      currentTarget: modalContainer
+    } as unknown as Event;
+
+    component.onBackdropClick(mockEvent);
+
+    expect(closeModalSpy).not.toHaveBeenCalled();
   });
 });

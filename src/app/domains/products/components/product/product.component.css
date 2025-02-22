@@ -24,6 +24,11 @@
   color: red;
 }
 
+
+.container-fields {
+  gap:  24px;
+}
+
 .container-fields,.title-page {
   display: flex;
   align-items: center;
@@ -37,7 +42,7 @@
   padding-bottom: 20px;
 }
 
-.input-form {    
+.input-form {
   display: block;
   height: 10px;
   width: 300px;
@@ -52,6 +57,12 @@
   border: 1px solid #c8c8c8;
   border-radius: 4px;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap:12px;
 }
 
 .column-right {
@@ -97,7 +108,7 @@
   font-family:Prelo-SemiBold,sans-serif;
 }
 
-.msg-error { 
+.msg-error {
   display: flex;
   justify-content: center;
   align-items: center;

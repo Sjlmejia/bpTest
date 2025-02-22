@@ -17,8 +17,8 @@ export class ListComponent {
   @ViewChild('dropdown', { static: false }) dropdown?: ElementRef;
 
   products = signal<Product[]>([]);
-  selecteValue?: string;
-  defaultValue = signal(5);
+  filteredProducts = signal<Product[]>([]);
+  selectedRecords = signal<number>(5);
   private router = inject(Router);
   private productService = inject(ProductService);
   showMenu = signal(false);
@@ -26,84 +26,85 @@ export class ListComponent {
   searchValue = signal('');
   messageError = signal('');
   showMessageError = signal(false);
-  sortOptions = [5,10, 20];
+  selectedProduct: Product | null = null;
+  sortOptions = [5, 10, 20];
   logo = 'https://cdnbancawebprodcx6.azureedge.net/blue/static/items/pbw-pichincha-banca-web-public-ang/assets/logo_pichincha.svg';
-
-  productsByFilter = computed(() => {
-    const filter = this.defaultValue();
-    const products = this.products();
-    const search = this.searchValue();
-    if(this.searchValue().length > 0) {
-      return products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
-    }
-    const filterProducts = [...products.slice(0, filter)]
-    return filterProducts;
-  });
 
   columnsHeader = [
     { key: 'logo', label: 'Logo' },
     { key: 'name', label: 'Nombre del Producto' },
-    { key: 'description', label: 'Descripcion' },
-    { key: 'date_realease', label: 'Fecha de Liberación' },
-    { key: 'date_revision', label: 'Fecha de Restructuracion' }
+    { key: 'description', label: 'Descripción' },
+    { key: 'date_release', label: 'Fecha de Liberación' },
+    { key: 'date_revision', label: 'Fecha de Reestructuración' }
   ];
 
-  ngOnInit(){
-    this.checkProducts();
+  constructor() {
+    this.loadProducts();
   }
 
-  checkProducts() {
-    this.productService.getProducts()
-    .subscribe({
+  private loadProducts() {
+    this.productService.getProducts().subscribe({
       next: (products) => {
         this.products.set(products);
+        this.applyFilters();
       },
-      error: (error) => {
-        this.messageError.set(error.message);
-        this.showMessageError.set(true);
-      }
-    })
+      error: (error) => this.handleError(error)
+    });
   }
+
+  private applyFilters() {
+    const search = this.searchValue().toLowerCase();
+    let filtered = this.products();
+
+    if (search.length > 0) {
+      filtered = filtered.filter(product => product.name.toLowerCase().includes(search));
+    }
+
+    this.filteredProducts.set(filtered.slice(0, this.selectedRecords()));
+  }
+
   goToAdd() {
     this.router.navigate(['/product']);
   }
 
-  handleMenu() {
-    this.showMenu.set(!this.showMenu());
-  }
-
-  editProduct(id:string) {
+  editProduct(id: string) {
     this.router.navigate(['/product', id]);
   }
 
   deleteProduct(id: string) {
-    this.showModal.set(true);
+    const productToDelete = this.products().find(product => product.id === id);
+    if (productToDelete) {
+      this.selectedProduct = productToDelete;
+      this.showModal.set(true);
+    }
   }
-
   handleDelete(event: HandleDeleteProduct) {
     this.showModal.set(false);
-    const { isDelete, product } = event;
-    if(isDelete) {
-      this.productService.deleteProduct(product.id)
-      .subscribe({
-        next: (res) => {
-          this.checkProducts();
+    if (event.isDelete) {
+      this.productService.deleteProduct(event.product.id).subscribe({
+        next: () => {
+          this.loadProducts();
         },
         error: (error) => {
-          this.messageError.set(error.message);
-          this.showMessageError.set(true);
+          this.handleError(error);
         }
-      })
+      });
     }
   }
 
+
   handleSort(event: Event) {
-    this.selecteValue = this.dropdown?.nativeElement.value;
-    this.defaultValue.set(Number(this.selecteValue));
+    this.selectedRecords.set(Number((event.target as HTMLSelectElement).value));
+    this.applyFilters();
   }
 
   handleSearch(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-    this.searchValue.set(value);
+    this.searchValue.set((event.target as HTMLInputElement).value);
+    this.applyFilters();
+  }
+
+  private handleError(error: any) {
+    this.messageError.set(error.message);
+    this.showMessageError.set(true);
   }
 }

@@ -1,11 +1,10 @@
-<div class="modal" [ngStyle]="{'display': showModal ? 'block' : 'none'}">
-  <div class="modal-content">
+<div class="modal" [class.show]="showModal" (click)="onBackdropClick($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
     <div class="container">
-      <p class="title">Estas seguro de Eliminar el Producto {{product.name}}?</p>
-
+      <p class="title">¿Estás seguro de eliminar el producto {{ product.name }}?</p>
       <div class="clearfix action-buttons">
-        <button  class="cancel-btn" (click)="closeModal()">Cancel</button>
-        <button  class="submit-btn" (click)="closeModal(true)">Delete</button>
+        <button class="cancel-btn" (click)="closeModal()">Cancelar</button>
+        <button class="submit-btn" (click)="closeModal(true)">Eliminar</button>
       </div>
     </div>
   </div>
