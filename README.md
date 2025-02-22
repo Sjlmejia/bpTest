@@ -2,26 +2,71 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
 
-## Development server
+## Development Server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm start` to launch the development server. Navigate to `http://localhost:4200/`. The application will automatically reload when you make changes to the source files.
 
-## Code scaffolding
+## Code Scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Use the following command to generate new components, directives, pipes, services, classes, guards, interfaces, enums, or modules:
+
+```sh
+ng generate component component-name
+ng generate directive|pipe|service|class|guard|interface|enum|module
+```
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run the following command to build the project:
 
-## Running unit tests
+```sh
+npm run build
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The build artifacts will be stored in the `dist/` directory.
 
-## Running end-to-end tests
+## Running Unit Tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Unit tests are executed using [Jest](https://jestjs.io/). To run them, use:
 
-## Further help
+```sh
+npm test
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Running Unit Tests in Watch Mode
+
+For continuous testing, use:
+
+```sh
+npm run test:watch
+```
+
+### Running Unit Tests with Coverage Report
+
+To generate a test coverage report, use:
+
+```sh
+npm run test:coverage
+```
+
+## Running End-to-End Tests
+
+This project does not currently include end-to-end testing by default. To add and run E2E tests, you need to install and configure an E2E testing framework such as Cypress or Playwright.
+
+## Proxy Configuration
+
+The project uses a proxy configuration (`proxy.conf.json`). The development server is started with:
+
+```sh
+npm start
+```
+
+## Further Help
+
+To get more help on the Angular CLI, use:
+
+```sh
+ng help
+```
+
+Or visit the official [Angular CLI Documentation](https://angular.io/cli).
